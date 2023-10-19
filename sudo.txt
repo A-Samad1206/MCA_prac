@@ -1,0 +1,21 @@
+su - => Login as root user
+su - imsamad => Login as imsamad user
+sudo cat /etc/sudoers => Provide config for super do
+    We can make changes via texta editors, but there is a utility visudo
+    visudo => This will run some pre-checks before saving the changes, and stop to make some weired changes to files.
+
+    timestamp_timeout = By adding to default we can tweek the sudo session expire time.
+
+    -1 = will never timeout/expires
+    40 = timeout in 40 minutes
+    0 = it will always prompt for pwd.
+
+sudo -k => Logout
+
+sudo -i => Login as root user
+
+imsamad ALL=(ALL) NOPASSWD:ALL
+
+sudo passwd root => Set pwd for root user
+sudo passwd imsamad => Set pwd for imsamad user
+usermod -aG sudo user1
