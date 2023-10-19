@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+
+  <body>
+    <iframe src="https://www.w3schools.com/" frameborder="0"></iframe>
+    <!-- <a href="https://www.w3schools.com" target="_blank">Blank</a> <br />
+    <a href="https://www.w3schools.com" target="_parent">Parent</a><br />
+    <a href="https://www.w3schools.com" target="_self">Self</a><br />
+    <a href="https://www.w3schools.com" target="_top">Top</a><br /> -->
+    <script>
+      let arr = [1, 1, 2, 8, 5, 8, 1, 2];
+      let obj = {};
+
+      arr.forEach((a) => {
+        if (!obj[a]) obj[a] = 1;
+        else obj[a]++;
+      });
+
+      arr = [];
+
+      Object.keys(obj).map((key) => {
+        arr.push(Number(key));
+        arr.push(obj[key]);
+      });
+
+      // console.log(arr);
+      const map = new Map();
+
+      map.set(2, 10);
+      map.set(3, 20);
+      map.set(4, 30);
+      map.set(5, 40);
+      console.log(map);
+    </script>
+  </body>
+</html>
