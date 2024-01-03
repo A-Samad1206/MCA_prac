@@ -1,0 +1,3 @@
+Shell are command line interperator.
+
+bash is advance version of sh

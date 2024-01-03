@@ -1,0 +1,72 @@
+Debian based popular package management tools
+a.) dpkg
+b.) apt
+c.) snap
+
+dpkg --print-architecture
+
+
+dpkg -s docker-ce
+
+wget - In Unix-like OS, utility to download or retrive files from web via HTTP,HTTPS or FTP
+
+dpkg -p apahe2 => info about installed package.
+
+dpkg -s apache2 => To verify apache2 in installed
+
+dpkg -P virtual7.0
+
+___
+APT
+
+apt-cache search virtualbox = Would search all the repo configured in source.list
+
+apt-cache policy apache2 => Different versions availale to download.
+
+apt-cache show pkg_name => Detailed info about that package.
+
+
+Add repo source -> 
+echoed to /etc/apt/sources.list.d
+
+sudo add-apt-repository 'deb url jammy main restricted'
+
+apt purge pkg_name =>  remove pkg as well as configuration file but not associated deps
+apt remove pkg_name => 
+apt autoremove pkg_name => keep configuration
+apt autoremove --purge pkg_name => also delete configuration as well as target pkg
+
+/etc/apt/source.list
+
+deb http://in.archive.ubuntu.com/ubuntu/ jammy main restricted
+
+jammy => Ubntu 22 codename
+Different types of repositories and their components in the context of Linux distributions, such as Debian and Ubuntu, typically include:
+
+1. **Main:** This component contains the core, officially supported software packages for the distribution. It consists of open-source and 
+    free software that is fully supported by the distribution's maintainers.
+
+2. **Contrib:** The "contrib" component contains software packages that are not a part of the core distribution but are still 
+    supported by the distribution's community. These packages are typically free and open source.
+
+3. **Non-Free:** The "non-free" component includes software packages that are not open source and may have licensing or legal restrictions. 
+    They are supported by the distribution but are not open source.
+
+4. **Restricted:** The "restricted" component often includes drivers and firmware that are necessary for certain hardware to 
+    function but are not open source. These packages are supported by the distribution.
+
+5. **Universe:** In Ubuntu, "universe" contains community-maintained open-source software packages that are not officially 
+    supported but are readily available and can be included in the distribution.
+
+6. **Multiverse:** The "multiverse" component includes software packages that are not open source and are also not supported by 
+    the distribution. They may have legal or licensing restrictions.
+
+7. **PPA (Personal Package Archive):** PPAs are not part of the official distribution but are personal repositories created by 
+    individuals or teams. Users can add PPAs to their system to access additional software packages and updates.
+
+The availability and naming of these components can vary between different Linux distributions, but they serve similar purposes in 
+terms of providing access to various types of software. Users can choose which components to enable based on their preferences and 
+requirements for open source or proprietary software.
+
+
+ 

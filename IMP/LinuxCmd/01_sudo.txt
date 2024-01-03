@@ -1,0 +1,48 @@
+su - => Login as root user
+su - imsamad => Login as imsamad user
+sudo cat /etc/sudoers => Provide config for super do
+    We can make changes via text editors, but there is a utility visudo
+
+visudo => This will run some pre-checks before saving the changes, and stop to make some weired changes to files.
+
+timestamp_timeout = By adding to default we can tweek the sudo session expire time.
+
+-1 = will never timeout/expires
+40 = timeout in 40 minutes
+0 = it will always prompt for pwd.
+
+sudo -k => Logout
+
+sudo -i => Login as root user
+
+imsamad ALL=(ALL) NOPASSWD:ALL
+
+sudo passwd root => Set pwd for root user
+sudo passwd imsamad => Set pwd for imsamad user
+usermod -aG sudo user1
+
+
+sudo cat /etc/passwd -> Show all the users configured on the server
+
+sudo cat /etc/group
+
+Add user
+adduser
+
+Add group
+    addgroup
+
+userdel -> Delete a user from the system
+
+usermod -aG grp1,grp2 username
+
+Delete user from a group
+    deluser username grp1
+
+chmod u=rwx,g=rwx,o=rwx,a=rwx files
+chmod -R u=rwx,g=rwx,o=rwx,a=rwx files
+
+chown -R user1 files/dir
+
+chgrp -hR grpName files
+

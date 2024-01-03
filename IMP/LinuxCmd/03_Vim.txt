@@ -1,0 +1,42 @@
+By default it open in CMD mode.
+
+i -> insert before cursor
+I -> insert at the beginning of line
+a -> insrt text after cursor
+A -> insert at the end of the line
+o -> open line below current line and enter insert mode 
+O -> open line above current line and enter insert mode 
+
+Navigating
+:gg -> At the beginning of files
+G -> At the end
+:18 -> At line 18
+:w -> Move to the beginning of the next word
+:b -> Move to the beginning of the previous word
+:H -> top of current visible window
+:M -> middle of current visible window
+:L -> bottom line of current visible window
+:ctrl + f -> Next screen
+:ctrl + b -> Previous screen
+:ctrl + u -> Next half screen
+:ctrl + d -> Previous half screen
+
+Delete
+:x -> Delete character
+:dw -> delete word
+:dd -> delete current line
+:d^ | d0  -> From cursor to the beginning of the line
+:d$ | :D -> From cursor to the end of the line
+:dG -> From cursor to the end of file EOF
+
+:wq | :x  - write the changes and quit    
+:q!  - Quit without saving
+
+Arrow Key Escape Sequences
+The problem of encountering unexpected or incorrect characters when pressing arrow keys in a terminal or text editor like 
+Vim is often referred to as "Arrow Key Navigation" or "Arrow Key Escape Sequences" issues. 
+These problems typically occur when there is a discrepancy between how the terminal emulator, the terminal itself, 
+and the application (such as Vim) interpret the escape sequences sent by the arrow keys.
+
+
+echo "set nocompatible" >> ~/.vimrc

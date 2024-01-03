@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendence</title>
+  </head>
+  <body>
+    <script>
+      const stats = [
+        {
+          name: 'java',
+          total: 26,
+          present: 20,
+          absent: 4,
+        },
+        {
+          name: 'ai',
+          total: 26,
+          present: 19,
+          absent: 7,
+        },
+        {
+          name: 'linux',
+          total: 29,
+          present: 23,
+          absent: 6,
+        },
+        {
+          name: 'nsc',
+          total: 20,
+          present: 16,
+          absent: 4,
+        },
+        {
+          name: 'se',
+          total: 7,
+          present: 5,
+          absent: 2,
+        },
+        {
+          name: 'sem',
+          total: 8,
+          present: 6,
+          absent: 2,
+        },
+        {
+          name: 'j_lab',
+          total: 12,
+          present: 8,
+          absent: 2,
+        },
+      ];
+
+      stats.forEach(({ present, total, name }) => {
+        let percentage = (present / total) * 100;
+        const rightNow = percentage;
+        let count = 0;
+        let presentTmp = present,
+          totalTmp = total;
+        while (percentage < 75) {
+          percentage = (++present / ++total) * 100;
+          count++;
+        }
+
+        let tmpPercentage = rightNow;
+        let countTmp = 0;
+
+        while (tmpPercentage > 75) {
+          // console.log('tmpPercentage');
+          tmpPercentage = (presentTmp / ++totalTmp) * 100;
+          // console.log('tmpPercentage', tmpPercentage);
+          countTmp++;
+          // break;
+        }
+
+        console.log(
+          `Subject: ${name} to attain 75% or above ${count}, after absent ${countTmp} days ${tmpPercentage}`
+        );
+
+        // console.log({ name, percentage });
+      });
+    </script>
+  </body>
+</html>

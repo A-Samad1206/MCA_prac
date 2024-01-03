@@ -1,0 +1,6 @@
+ip add => List out all internet interfaces
+/etc/netplan => To change ip then apply them with ip => sudo netplan apply
+ip route 
+tracepath 8.8.8.0
+nslookup - For a domain Servers
+tcpdump - 

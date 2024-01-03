@@ -1,0 +1,53 @@
+FROM node:lts-alpine
+WORKDIR /app
+ARG NODE_ENV
+
+COPY package.json .
+# RUN  npm i
+RUN if [ NODE_ARG="dev" ]; \
+    then npm i; \
+    else npm i --omit-dev; \
+    fi 
+COPY . .
+CMD ["npm", "run","dev"]
+
+---------------------------------
+version: '3'
+services:
+  node-app:
+    build: .
+    args:
+        NODE_ENV: dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./:app
+      - /app/node_modules
+    environment:
+      - PORT=3000
+    depends_on:
+        - mongo
+
+  mongo:
+    image: mongo
+    environment:
+        - MONGO_INITDB_ROOT_USERNAME=imsamd || ${MONGO_USER}
+        - MONGO_INITDB_ROOT_PASSWORD=pwd 
+    volumes:
+        - mongo-db:/data/db
+        - /to/my/dir:/data/db 
+
+volumes:
+  mongo-db:
+-------------------------------------------
+build dirctive - docker search for Dockefile in . dir, which tell how to build image.
+or build directve used to build image locally, it does not fetch image from Docker hub or any other registory.
+
+If not in . dir
+context: ./path/to/Dockerfile-directory
+dockerfile: Dockerfile
+
+image directive - To fetch image from docker hub.
+
+set -o allexport; source /root/.env; set +o allexport;
+

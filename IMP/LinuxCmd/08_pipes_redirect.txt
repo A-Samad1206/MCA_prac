@@ -1,0 +1,12 @@
+Any command have three part
+1.) input - stdin
+2.) output - stdout
+3.) error - stderr
+
+0 - stdin
+1- stdout
+2 - stderr
+
+cat unknowfle 2> error.txt 1> info.txt
+cat file.txt 1> info.txt === cat file.txt > info.txt != cat file.txt >> info.txt
+./script.sh > res.txt 2>&1

@@ -1,0 +1,27 @@
+printenv === env - CMD to print all env
+set == CMD to print all shell variables.
+
+VAR1=xyz
+
+unset VAR1
+
+Set shell variable as env variable
+export VAR1
+
+Demote env variable to shell variable 
+export -n  VAR1
+
+
+Type of shels
+
+
+Login shell -
+Shell open after first login either locally or via ssh.
+
+It read env file /etc/profile (system wide settings) and ~/.bash_profile, ~/.bash_login or ~/.profile(user-specific settings)
+These file used to set env var, define aliases and perform other initials setup tasks.
+
+Non-login shells
+It is created when a new terminal is opended from terminal, it does not read login initial setup files.
+
+It reads ~/.bashrc

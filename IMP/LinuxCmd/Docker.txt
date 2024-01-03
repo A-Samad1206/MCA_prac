@@ -1,0 +1,90 @@
+Docker containers 
+Any application consist of actual app code plus runtime env plus deps.
+e.g. NodeJS app would have actual app code + node_modueles to lodge deps + NodeJS runtime.
+Problem, we face to run the application on various OS, is every OS have different steps to install and run the app. Docker provide
+a unified approach to tackle this problem by unsing image Dockerfile.
+
+If we run the application directly on machine, it is basically would be polluting Host FileSystem which might cause a Security Issue, docker provide isolcation, by
+runnung it inside separte user space provided Docker engine isolated from host system.
+Docker container package the entire usercode,deps and runtime in a unit and run in an isolated Dockerengine env.
+Resource Limitations:
+Resource allocation - 
+Docker allows you to set resource limitations (CPU, memory, etc.) for containers, making it possible to run applications consistently across different 
+hardware configurations while adhering to specified resource constraints.
+
+They are both hardware-agnostic and platform-agnostic. This means 
+they can run anywhere, from your laptop to the largest cloud compute instance and
+everything in between - and they don't require you to use a particular
+language, framework or packaging system. That makes them great building blocks
+for deploying and scaling web apps, databases, and backend services without
+depending on a particular stack or provider.
+
+
+docker image pull
+
+docker run -d --name myCont -p 3000:80 -p 8000:80 img_name:version
+
+docker ps -as
+
+docker ps --format="ID\t{{.Id}}\nContainer\t{{.Container}}"
+
+
+Volume - 
+
+Bind mount -  It hinders the app portability, solution is generate a new Docker image via Dockefile and contain necessary files u gonna serve via NGINX.
+docker run -d --name nginx_cont -p 3000:80 --volume $(pwd):/usr/share/nginx/html nginx:latest
+docker run -d --name nginx_cont2 -p 3000:80 --volumes-from nginx_cont nginx:latest
+
+--------------------------------------------------------------------------------------------------------------------------------
+docker run -d --name my-app -p 3000:4000 -v $(pwd):/app -v /app/node_modules my-app
+The `docker run` command you've provided is used to run a Docker container, and it seems to be related to a Node.js application. Let me break down the command for you:
+
+- `docker run`: This is the command used to create and run a Docker container.
+- `-d`: This flag stands for "detached" mode, which means the container will run in the background.
+- `--name my-app`: This flag assigns a name to the container, in this case, "my-app."
+- `-p 3000:4000`: This flag specifies port mapping. It maps port 3000 on your host machine to port 4000 in the Docker container. 
+    This is typically used when you have a service running in the container that listens on port 4000, and you want to access it from your host machine using port 3000.
+- `-v $(pwd):/app`: This flag sets up a volume mount, which allows you to share files and directories between your host machine and the Docker container.
+    `$(pwd)` is used to get the current working directory on your host machine, and it's mounted to the `/app` directory inside the container. 
+    This is often done to provide your application code to the container so that changes can be reflected in real-time.
+- `-v /app/node_modules`: This flag sets up another volume mount, specifically mapping the `/app/node_modules` directory in the container. 
+    This is typically done to prevent the `node_modules` directory from being overwritten by the volume mount in the previous flag. 
+    It ensures that the dependencies in `node_modules` are retained within the container.
+- `my-app`: This is the name of the Docker image you want to run in the container.
+
+However, there are a couple of issues in the command you've provided:
+  
+--------------------------------------------------
+docker-compose up -d
+--build = To rebuild the image
+
+docker-compose down -v 
+It would tear down all the annymous and named volumes.
+One heck to tear down annymous volumes is 
+docker-compose down without -v
+then docker-compose up -d
+then 
+docker volume prune => This would delete all un-used volumes.
+Names volume
+
+
+----------------
+docker-compose up -d node-app --no-deps => Build only node-app and ignore all services on which it depends.
+
+docker-compose up -d node-app --no-deps -V => Build only node-app and ignore all services on which it depends and renew anonymous volumes
+    in cases when your node_modules is anonymous mounted and install a new package like npm i redis.
+
+Only build all service image 
+    docker-commpose up build 
+
+Only build one service image 
+    docker-commpose up build srv_name
+
+docker-commpose push 
+docker-compose push srv_name
+
+docker exec -it myapp /bin/bash
+Provide a shell cmd to interact with underlying running container
+
+Host bind volume - 
+Allow to share files and folders between contaienr and host FileSystem.

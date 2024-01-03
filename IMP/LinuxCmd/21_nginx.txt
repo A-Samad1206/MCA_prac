@@ -1,0 +1,53 @@
+ufw = uncomplicated firewall
+user-friendly front-end for managing iptables.
+iptables is popular firewall management tool in Linux.
+
+
+Server Block - 
+In Nginx, a "server block" is a configuration block that defines how the web server should respond to 
+requests for a specific domain or virtual host. 
+Each server block is associated with a particular server name (domain) and may contain directives that 
+specify how Nginx should handle incoming HTTP requests for that domain.
+
+The `server_name` directive within a server block specifies the domain or hostname for which the 
+configuration should apply. For example:
+
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        # Configuration for the root location ("/")
+        # ...
+    }
+
+    location /images {
+        # Configuration for requests to /images
+        # ...
+    }
+}
+
+
+
+In this example:
+
+- The server block listens on port 80 and is configured for the domain "example.com."
+- It contains two `location` blocks: one for the root URL ("/") and another for requests to the "/images" path.
+- Within each `location` block, you can specify various directives to define how Nginx should handle requests, 
+such as proxying requests to an application, serving static files, or setting specific response headers.
+
+Server blocks allow you to host multiple websites or web applications on the same Nginx server by specifying different 
+`server_name` values and configuring how requests to each domain or path should be processed. This makes Nginx a 
+powerful and flexible web server for managing multiple websites or applications on a single server.
+
+
+Steps 
+1.) Make an index file in /var/www/html/mysite
+2.) Create a server block in sites-available/
+3.) Create a symlink from sites-enabled
+4.) nginx -t
+5.) restart nginx service
+
+Remaining portion
+    1.) SSL
+    2.) nmap tool

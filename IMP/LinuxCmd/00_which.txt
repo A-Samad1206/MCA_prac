@@ -1,0 +1,8 @@
+The "which" command in Unix-like operating systems is used to locate the executable file associated with a
+given command.
+It helps you determine the path of the command that will be executed when you run it in the terminal. 
+
+which ls
+/usr/bin/ls
+which docker
+/usr/bin/docker

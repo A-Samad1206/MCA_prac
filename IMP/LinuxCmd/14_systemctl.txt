@@ -1,0 +1,18 @@
+After kernal finsih loading OS, comes systemctl time to load and run.
+
+
+At load time, it systemd will load its own configuration it will determine its boot goal.
+Each type of capability systemd has is called as Unit.
+
+systemctl list-units
+systemctl list-unit-files
+
+Linux store unit files in /lib/systemd/system
+
+systemd logs
+
+
+journalctl --since "20233-09-08 00:00:00" --untill today
+journalctl --since yesterday 
+
+journalctl -u apache2

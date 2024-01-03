@@ -1,0 +1,29 @@
+sleep 3000
+
+ctrl + k -> kill abruptly
+ctrl + z -> stop abruptly
+jobs - List out all stopped/running jobs or process initiated by current user
+jobs     
+fg job_id -> 
+bg job_id
+
+Two types of waiting process
+a.) interuptible process - can be interupted by signal
+b.) um-interuptible process - depend on hardware condition
+c.) stopped process - stopped by signal
+d.) zombie process - it completely execute but hanging in process table due to lack of correpondance between parent and child process.
+
+ps -> List or monitor all the process of current user
+
+The ps command in Unix-like operating systems is used to list information about processes running on a system. 
+
+ps -aef = All processes
+
+ps -U user1 => List all processes of user1.
+
+top => show all process in real-time and refresh every 3sec by default
+by default sort them by CPU utilisation 
+
+pgrep chrome
+pidof chrome
+pkill chrome => This will kill all parent and child processes.
