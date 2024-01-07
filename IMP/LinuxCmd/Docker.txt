@@ -1,12 +1,18 @@
 Docker containers 
 Any application consist of actual app code plus runtime env plus deps.
 e.g. NodeJS app would have actual app code + node_modueles to lodge deps + NodeJS runtime.
-Problem, we face to run the application on various OS, is every OS have different steps to install and run the app. Docker provide
+Problem, we face to run the application on various OS, is every OS have different steps to 
+install and run the app. Docker provide
+
 a unified approach to tackle this problem by unsing image Dockerfile.
 
-If we run the application directly on machine, it is basically would be polluting Host FileSystem which might cause a Security Issue, docker provide isolcation, by
+If we run the application directly on machine, it is basically would be polluting
+Host FileSystem which might cause a Security Issue, docker provide isolcation, by
 runnung it inside separte user space provided Docker engine isolated from host system.
-Docker container package the entire usercode,deps and runtime in a unit and run in an isolated Dockerengine env.
+
+Docker container package the entire usercode,deps and runtime in a unit and run in an 
+isolated Dockerengine env.
+
 Resource Limitations:
 Resource allocation - 
 Docker allows you to set resource limitations (CPU, memory, etc.) for containers, making it possible to run applications consistently across different 
@@ -18,7 +24,51 @@ everything in between - and they don't require you to use a particular
 language, framework or packaging system. That makes them great building blocks
 for deploying and scaling web apps, databases, and backend services without
 depending on a particular stack or provider.
++-------------------------------------------+
+|             Host Machine                  |
+|                                           |
+|   +---------------------------+           |
+|   |        Docker0 (Bridge)  |           |
+|   |                           |           |
+|   |  +---------------------+  |           |
+|   |  |    Container A      |  |           |
+|   |  |     172.17.0.2      |  |           |
+|   |  +---------------------+  |           |
+|   |                           |           |
+|   |  +---------------------+  |           |
+|   |  |    Container B      |  |           |
+|   |  |     172.17.0.3      |  |           |
+|   |  +---------------------+  |           |
+|   +---------------------------+           |
+|                                           |
++-------------------------------------------+
 
+
+Docker containes - 
+1.) CLI
+2.) Engine - Docker Daemon
+3.) Registry - Docker Hub - Like Github, allow to put your code at centralised place on the web, 
+               from where people can pull your code.
+               Docker allow to put your image on centralisedlocation on web, from where they can be pulled
+               your server or VPSlike ec2, GCP, Digtial Ocean - Droplet etc.
+Docker Image - Like a templete/blueprint from which consistent containers can be created.
+               Blueprint include actual code, config files to install exteranl deps and 
+                auxillary services like Database.
+
+
+               A Docker image is a standalone, and executable package that 
+               includes everything needed to run a piece of software.
+                - application code
+                - deps
+                - FileSystem
+Docker containers- 
+
+- Running instance of image
+- Having its own network 
+
+Bridging the Gap:
+When you run a container, Docker sets up a bridge network and connects the container to it. 
+This bridge network allows communication between the container and the host machine. Docker also performs Network Address Translation (NAT) to enable containers to communicate with the external network.
 
 docker image pull
 
@@ -47,6 +97,8 @@ The `docker run` command you've provided is used to run a Docker container, and 
 - `-v $(pwd):/app`: This flag sets up a volume mount, which allows you to share files and directories between your host machine and the Docker container.
     `$(pwd)` is used to get the current working directory on your host machine, and it's mounted to the `/app` directory inside the container. 
     This is often done to provide your application code to the container so that changes can be reflected in real-time.
+    This is dagerous in the sense, change made from inside the container file system, propagated back to host machine.
+
 - `-v /app/node_modules`: This flag sets up another volume mount, specifically mapping the `/app/node_modules` directory in the container. 
     This is typically done to prevent the `node_modules` directory from being overwritten by the volume mount in the previous flag. 
     It ensures that the dependencies in `node_modules` are retained within the container.
@@ -55,6 +107,9 @@ The `docker run` command you've provided is used to run a Docker container, and 
 However, there are a couple of issues in the command you've provided:
   
 --------------------------------------------------
+Docker compose
+Tool to define and run multi-container docker applications. 
+In a YAMLwe define all the services and with single command create and start all the services from the yaml config file.
 docker-compose up -d
 --build = To rebuild the image
 

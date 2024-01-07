@@ -1,0 +1,21 @@
+services:
+  my_mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_vol:/data/db
+
+  node:
+    build:
+      context: .
+      target: dev
+    ports:
+      - 4000:3000
+    volumes:
+      - /usr/src/app/node_modules
+      - .:/usr/src/app
+    command:
+
+volumes:
+  mongo_vol:
